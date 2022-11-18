@@ -1,4 +1,3 @@
-
 # Network Topology and Service Discovery
 
 The Tholian Network operates the `tholian.network` domain,
@@ -6,7 +5,6 @@ which allows us to create certificates for each username.
 
 In the following examples, `alice` and `bob` try to communicate, each
 owning their local TLS certificate in the Stealth Profile folder.
-
 
 ## Offline Discovery
 
@@ -16,7 +14,7 @@ other peers locally.
 
 Multicast DNS interaction is compatible with DNS-SD and operates on the
 multicast addresses `244.0.0.251` and `ff02::fb` on port `5353` and,
-as all other Stealth Service APIs, also on port `65432`.
+as all other Stealth Service APIs, also on port `process.env.PORT`.
 
 - Alice started her Stealth Browser and it tries to find other Peers.
 - Alice's Stealth Browser sends out a `PTR` question for `_stealth._wss.tholian.local` and `_stealth._ws.tholian.local` via Multicast DNS.
@@ -26,7 +24,6 @@ as all other Stealth Service APIs, also on port `65432`.
 - Alice can now ask Bob whether he wants to add her as a Trusted Peer.
 - If Bob confirms Alice as a Peer, both will have themselves as Trusted Peers, with their pinned TLS certificates.
 
-
 ## Online Discovery
 
 The Radar Service APIs are compatible with the Stealth Service APIs,
@@ -34,7 +31,7 @@ so Radar instances can also be used as a `TURN` server to discover
 other peers.
 
 DNS interaction with the Radar Service operates on the domain
-`radar.tholian.network` on port `65432`.
+`radar.tholian.network` on port `process.env.PORT`.
 
 - Alice wants to go online and changes the Internet Setting in her Stealth Browser to Broadband or Mobile.
 - Alice's Stealth Browser sends out a `SRV` question for `_stealth._wss.tholian.network` via DNS.
@@ -51,7 +48,6 @@ that are not only inside her ISP's NAT, but which are also from other ISPs in he
 other countries as well. This guarantees that Alice can always at least use one type of Peer in order
 to avoid censorship and MITM blocking of websites.
 
-
 ## Peer-to-Peer Topologies
 
 Peers are categorized in different types, in order to be able to guarantee that Peers can always find
@@ -63,14 +59,12 @@ restrictions. This was tested and confirmed with `1und1`, `kabelbw`, `telefonica
 carrier-grade NATs, so it's recommended to try out a mobile SIM as a gateway if your cable ISP doesn't
 provide IPv6 support.
 
-
 The Radar Service's `Peer` API categorizes suitable Peers by the following criteria:
 
 - Same ISP, same NAT
 - Same ISP, different NAT
 - Different ISP, same country
 - Different ISP, different country
-
 
 As some NATs or Firewalls might not want to cooperate in above explained scenarios, the Stealth Browser
 instances transparently switch between these network protocols:
@@ -89,7 +83,6 @@ Network Topologies.
 Additionally, every Connection implementation can encapsulate (and exfiltrate) traffic of other
 encrypted TLS communication channels, which helps avoiding detection of Firewalls that are rule
 based (and cannot detect e.g. HTTP/S traffic smuggling reliably).
-
 
 ## Peer-to-Peer DNS
 
@@ -116,4 +109,3 @@ resolver.
 If the local Peers do not have the related `Hosts` Settings in their Browser Profile, they will function
 as a DNS Resolver Service and relay the DNS traffic to the list of public DNS via HTTPS/TLS resolvers via
 above described DNS Ronin based resolver.
-

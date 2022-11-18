@@ -1,8 +1,6 @@
-
 # Stealth Guide
 
 The Usage is documented in the Stealth Service's [README.md](/stealth/README.md) file.
-
 
 ## Architecture
 
@@ -18,18 +16,16 @@ instance, it can also be used without the [Browser UI](/browser/design).
 The Stealth Service is a standalone Browser, Scraper and Proxy that runs in `node.js`
 version `12+`. This is the only requirement, as Stealth has zero external dependencies.
 
-
 ## Execution Process
 
 The [stealth/make.mjs](/stealth/make.mjs) script builds the [Base](/base) Library and
 the [Browser](/browser) before the Stealth Service is built.
 
-This guarantees that the Browser UI available at `http://localhost:65432` is correctly
+This guarantees that the Browser UI available at `http://localhost:process.env.PORT` is correctly
 built and available if a Browser Engine, Webview or other Web Browser connects to the
 Stealth Service.
 
 On both **GNU/Linux** and **MacOS**, `node.js` version `12+` is required.
-
 
 ## Stealth Service
 
@@ -38,7 +34,7 @@ or as a Web Proxy. This allows to use Stealth in an air-gapped environment or as
 a local Web Archive, so that e.g. Smartphone or Tablets can browse and receive
 websites that are already cached.
 
-Any Stealth Service is running always on port `65432` for simplicity reasons.
+Any Stealth Service is running always on port `process.env.PORT` for simplicity reasons.
 
 - If Peers connect via `HTTP/1.1` with the `Upgrade: websocket` and `Sec-WebSocket-Protocol: stealth` header, they receive a `WS/13` handshake.
 - If Peers connect via `WS/13`, they can use peer-to-peer network services.
@@ -53,7 +49,6 @@ In case of an HTTP request:
 
 Stealth's API can be accessed via `WS/13` Sockets. The [Stealth API](../services/README.md)
 document contains instructions and examples on how to use Stealth's API in practice.
-
 
 ## Session/Tab History
 
@@ -73,7 +68,6 @@ and redirects:
 - `proxy` indicates the request is done by a client that uses Stealth as a proxy.
 - `webview` indicates the request is done by an `iframe` or `webview`.
 - `refresh` indicates the request's contents should be refreshed.
-
 
 ## Peer Streaming
 
@@ -97,18 +91,16 @@ file will be streamed to both Peers in parallel while its being downloaded.
 Peers that try to abuse this API will receive a warning 3 times. Peers that further
 violate/abuse this API will be blocked until the Stealth Service is restarted.
 
-
 ## Network Communication
 
 All network services are peer-to-peer and allow multiple Peers per Stealth Service.
 They can either be used in direct connections (e.g. a Web Browser pointing to
-`http://localhost:65432`) or through a middle-man Peer via the `Peer.proxy()` API.
+`http://localhost:process.env.PORT`) or through a middle-man Peer via the `Peer.proxy()` API.
 
 This allows Peers without direct internet access to browse the Web via middle-man
 Peers that have internet access. As long as one Peer has internet access, all trusted
 Peers that are listed in the [Settings Page](/browser/internal/settings.html) have
 internet access, too.
-
 
 These are the available Peer-to-Peer network services that can be used with the
 [Browser Client](/browser/source/Client.mjs) or the [Stealth Client](/stealth/source/Client.mjs):
@@ -123,4 +115,3 @@ These are the available Peer-to-Peer network services that can be used with the
 - [Redirect](/stealth/source/client/Redirect.mjs)
 - [Session](/stealth/source/client/Session.mjs)
 - [Settings](/stealth/source/client/Settings.mjs)
-

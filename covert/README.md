@@ -1,4 +1,3 @@
-
 # Covert Suite
 
 The Covert Suite is a test framework and test runner that allows to test
@@ -15,7 +14,6 @@ can be used as a reference point for future third-party clients.
 By default, it uses the [stealth/Client](../stealth/source/Client.mjs)
 which is written for node.js, so no external libraries and no external
 programs are necessary.
-
 
 ## Requirements
 
@@ -36,8 +34,7 @@ transmit and receive of both UDP/TCP data:
 - `80` (`--internet=true`) for [stealth/connection/HTTP](../stealth/review/connection/HTTP.mjs) and [stealth/connection/WS](../stealth/review/connection/WS.mjs).
 - `443` (`--internet=true`) for [stealth/connection/HTTPS](../stealth/review/connection/HTTPS.mjs) and [stealth/connection/WSS](../stealth/review/connection/WSS.mjs).
 - `13337` (`--internet=true`) for [stealth/connection/HTTP](../stealth/review/connection/HTTP.mjs) and [stealth/connection/WS](../stealth/review/connection/WS.mjs).
-- `65432` for [stealth/Client](../stealth/review/Client.mjs) and [stealth/Server](../stealth/review/Server.mjs).
-
+- `process.env.PORT` for [stealth/Client](../stealth/review/Client.mjs) and [stealth/Server](../stealth/review/Server.mjs).
 
 ## Quickstart
 
@@ -53,7 +50,6 @@ node ./covert/make.mjs;
 node ./covert/covert.mjs;
 ```
 
-
 ## ECMAScript Usage
 
 The Covert Library exports a `default` export that contains a namespaced
@@ -62,14 +58,12 @@ named exports available.
 
 ```javascript
 // Import Covert Library
-import covert from './covert/index.mjs';
+import covert from "./covert/index.mjs";
 ```
-
 
 ## NPM Usage
 
 ```javascript
 // Import Covert Library
-import covert from 'stealth/covert';
+import covert from "stealth/covert";
 ```
-

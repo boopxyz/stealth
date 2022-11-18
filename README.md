@@ -1,4 +1,3 @@
-
 # Tholian® Stealth - Secure, Peer-to-Peer, Private and Automatable Web Browser/Scraper/Proxy
 
 Tholian® Stealth is the automateable Web Browser for the Web of Truth and Knowledge.
@@ -8,7 +7,6 @@ Understanding and efficient Bandwidth Usage, no matter the cost.
 
 Stealth empowers its Users, not Website Developers that could (,will ,and did) abuse
 technologies to compromise the freedom and rights of Web Browser End-Users.
-
 
 ## Implemented Features
 
@@ -61,7 +59,7 @@ User Interface ("Browser UI") that is implemented using Web Technologies.
 
 - It can act as a Content-Auditing and Content-Filtering Web Proxy for other Web Browsers,
   which allows corporate-like setups with a shared peer-to-peer Cache and a local Archive
-  of the Web. Simply point your SOCKS4/5 or HTTP/S client to `http://stealth-service:65432/proxy.pac`.
+  of the Web. Simply point your SOCKS4/5 or HTTP/S client to `http://stealth-service:process.env.PORT/proxy.pac`.
 
 - It offers intelligent solutions for Error scenarios. In case a Site is not available
   anymore, the `stealth:fix-request` Page allows to download the Site automagically from
@@ -75,7 +73,6 @@ User Interface ("Browser UI") that is implemented using Web Technologies.
   is completely headless, so every single interaction that the [Browser UI](./browser/design)
   reflects can be implemented in a programmable manner, even remotely through trusted Peers
   using Stealth's peer-to-peer network services.
-
 
 ## Upcoming Features
 
@@ -91,7 +88,6 @@ User Interface ("Browser UI") that is implemented using Web Technologies.
   shipped with each release and allow to download cached content in a trustless manner by
   implementing a TLS-based notary mechanism for signing and validating the correctness of
   content (additionally to the encrypted transport layer).
-
 
 ## Quickstart
 
@@ -117,14 +113,13 @@ node ./stealth/stealth.mjs serve --debug=true;
 node ./browser/browser.mjs;
 
 # Alternatively open Stealth's Browser UI in a Web Browser
-# gio open "http://localhost:65432"
+# gio open "http://localhost:process.env.PORT"
 ```
 
 **IMPORTANT**: On mobile phones, Stealth can be used as a Web App by visiting the URL and
 adding it to the Home Screen. It will behave like an offline-ready App, and allow to visit
 downloaded Sites from the Cache; given that the Stealth Service is reachable via Wi-Fi or LAN
 from your mobile phone.
-
 
 ## Releases
 
@@ -143,7 +138,6 @@ as a Webview if you want to run Stealth via [browser/browser.mjs](/browser/brows
 
 (Links will be inserted here once the Stealth releases are ready for the public)
 
-
 ## Stealth Guide (for Hackers?)
 
 The [Guide](/guide/README.md) is currently meant for Developers that are new to the Project.
@@ -153,12 +147,10 @@ it to fit your needs.
 A User's Guide probably will arrive at a later point in time, as Stealth currently has no
 public release yet.
 
-
 ## Community
 
 There's a Telegram Chat available where most technical discussions happen.
 You can join it via [t.me/tholian_beta](https://t.me/tholian_beta) or search for `Tholian Beta`.
-
 
 ## Roadmap
 
@@ -176,7 +168,6 @@ well.
 If you have Problems, Suggestions or Ideas that would fit into Stealth, please open
 up an Issue and we'll be happy to talk about it :)
 
-
 ## License
 
 Private Usage of [Stealth](/stealth), including its [Browser](/browser) and the
@@ -189,4 +180,3 @@ If you want to commercially use the technology behind Stealth, please contact us
 [https://tholian.network](https://tholian.network) for a license.
 
 `(c) 2019-2021 Tholian(r) Network`
-

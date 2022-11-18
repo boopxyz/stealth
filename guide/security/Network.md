@@ -1,4 +1,3 @@
-
 # Network Security Guide
 
 (This Document is Work in Progress)
@@ -11,13 +10,12 @@ identify an end-user uniquely.
 
 Every Stealth Service also contains:
 
-- An HTTP/S Proxy (that supports `CONNECT` and `GET`) on port `65432`.
-- A Webserver that serves the Browser UI at port `65432` and path `/browser/*`.
-- A Websocket Services that serves the Peer-to-Peer API on port `65432`.
+- An HTTP/S Proxy (that supports `CONNECT` and `GET`) on port `process.env.PORT`.
+- A Webserver that serves the Browser UI at port `process.env.PORT` and path `/browser/*`.
+- A Websocket Services that serves the Peer-to-Peer API on port `process.env.PORT`.
 - A Multicast DNS-SD Service that interacts with other local Stealth Peers on port `5353`.
-- A DNS Router that can resolve DNS Requests for other Peers on port `65432`.
-- A SOCKS Proxy running on port `65432`.
-
+- A DNS Router that can resolve DNS Requests for other Peers on port `process.env.PORT`.
+- A SOCKS Proxy running on port `process.env.PORT`.
 
 ## Attack Vector: TCP/UDP Manipulation
 
@@ -42,4 +40,3 @@ Every Stealth Service also contains:
 ## Attack Vector: Multicast DNS-SD Manipulation
 
 ## Attack Vector: Multicast DNS-SD Tracking
-

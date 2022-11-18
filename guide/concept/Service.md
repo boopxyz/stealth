@@ -1,8 +1,6 @@
-
 # Stealth Service API
 
 Stealth's Service API can be accessed via `WS/13` Sockets.
-
 
 ## Request Data and Response Data
 
@@ -30,10 +28,9 @@ node ../covert/covert.mjs scan stealth/server/service/*;
 node ../covert/covert.mjs scan stealth/client/service/*;
 ```
 
-
 ## WebSocket API (WS/13)
 
-These services are available on port `65432` via the `WS/13` Protocol. The
+These services are available on port `process.env.PORT` via the `WS/13` Protocol. The
 `WebSocket Protocol` has to be set to `stealth` in order to make a successful
 handshake, other `Upgrade` requests are disconnected immediately.
 
@@ -50,41 +47,37 @@ string of an `Object` that contains the `Service Headers` and `Service Payload` 
 delegated respectively on either side. To avoid confusion, the term `Payload` is not used
 and the term `Request` and `Response` are used henceforth.
 
-
 ```javascript
 // Example inside a Browser VM
 
-let socket = new WebSocket('ws://stealth-service:65432', [ 'stealth' ]);
+let socket = new WebSocket("ws://stealth-service:process.env.PORT", [
+  "stealth",
+]);
 
 socket.onmessage = (e) => {
+  let response = null;
 
-	let response = null;
+  if (typeof e.data === "string") {
+    response = JSON.parse(e.data);
+  }
 
-	if (typeof e.data === 'string') {
-		response = JSON.parse(e.data);
-	}
-
-	if (response !== null) {
-		console.log('received headers', response.headers);
-		console.log('received payload', response.payload);
-	}
-
+  if (response !== null) {
+    console.log("received headers", response.headers);
+    console.log("received payload", response.payload);
+  }
 };
 
 socket.onopen = () => {
+  let request = {
+    headers: {
+      service: "host",
+      method: "read",
+    },
+    payload: {
+      domain: "cookie.engineer",
+    },
+  };
 
-	let request = {
-		headers: {
-			service: 'host',
-			method:  'read'
-		},
-		payload: {
-			domain: 'cookie.engineer'
-		}
-	};
-
-	socket.send(JSON.stringify(request));
-
+  socket.send(JSON.stringify(request));
 };
 ```
-
